@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+
+# Express.js
+build/
+dist/
+*.log
+
+# React
+/build
+/node_modules
+/public
+
+# MongoDB
+*.db
+
+# Editor
+.vscode/
+
+# Environment variables
+.env
