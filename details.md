@@ -7,3 +7,7 @@ Go to [https://tailwindcss.com/docs/guides/vite]
 ~ npx tailwindcss init -p
 ~ yarn dev
 ~ yarn add react-router-dom
+~ cd api
+~ yarn add express
+~ cd client
+~ yarn add axios
