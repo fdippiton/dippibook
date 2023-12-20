@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../UserContext";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const { setUser } = useContext(UserContext);
 
+  /**
+   * The function `handleLoginUser` is an asynchronous function that sends a POST request to the "/login"
+   * endpoint with the user's email and password, and sets the redirect state to true if the login is
+   * successful.
+   */
   const handleLoginUser = async (ev) => {
     ev.preventDefault();
 
     try {
-      await axios.post(
+      const { data } = await axios.post(
         "/login",
         {
           email,
@@ -20,6 +27,7 @@ function LoginPage() {
         },
         { withCredentials: true }
       );
+      setUser(data);
       setRedirect(true);
       alert("Login successful.");
     } catch (error) {
