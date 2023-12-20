@@ -11,3 +11,9 @@ Go to [https://tailwindcss.com/docs/guides/vite]
 ~ yarn add express
 ~ cd client
 ~ yarn add axios
+~ cd api
+~ yarn add cors
+~ yarn add mongoose
+~ yarn add dotenv
+~ yarn add bcryptjs
+~ yarn add jsonwebtoken

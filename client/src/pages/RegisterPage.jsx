@@ -8,9 +8,20 @@ function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const registerUser = () => {
+  const registerUser = async (ev) => {
     ev.preventDefault();
-    axios.get("http://localhost:4000/test");
+
+    try {
+      await axios.post("/register", {
+        name,
+        email,
+        password,
+      });
+
+      alert("Registration successful.");
+    } catch (error) {
+      alert("Registration failed.");
+    }
   };
 
   return (
@@ -42,7 +53,7 @@ function RegisterPage() {
             value={password}
             onChange={(ev) => setPassword(ev.target.value)}
           />
-          <button className="primary">Login</button>
+          <button className="primary">Register</button>
           <div className="text-center py-2 text-gray-500">
             Already have an account ?{" "}
             <Link className="underline text-black" to={"/login"}>
