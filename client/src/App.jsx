@@ -7,6 +7,7 @@ import Layout from "./Layout";
 import RegisterPage from "./pages/RegisterPage";
 import axios from "axios";
 import { UserContextProvider } from "./UserContext";
+import AccountPage from "./pages/AccountPage";
 
 /* `axios.defaults.baseURL = "http://localhost:4000";` sets the default base URL for all Axios requests
 in the application. In this case, it sets the base URL to "http://localhost:4000", which means that
@@ -22,6 +23,7 @@ function App() {
           <Route index element={<Index />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/account/:subpage?" element={<AccountPage />} />
         </Route>
       </Routes>
     </UserContextProvider>

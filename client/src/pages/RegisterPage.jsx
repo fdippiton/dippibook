@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import axios from "axios";
 
 function RegisterPage() {
@@ -19,6 +19,7 @@ function RegisterPage() {
       });
 
       alert("Registration successful.");
+      <Navigate to={"/login"} />;
     } catch (error) {
       alert("Registration failed.");
     }

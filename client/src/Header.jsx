@@ -7,7 +7,7 @@ function Header() {
 
   return (
     <header className=" flex justify-between">
-      <a className="flex items-center gap-1" to="">
+      <Link className="flex items-center gap-1" to={"/"}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -24,7 +24,7 @@ function Header() {
         </svg>
 
         <span className="font-bold text-xl">DippiBook</span>
-      </a>
+      </Link>
       <div className="flex gap-2 border border-gray 300 rounded-full py-2 px-4 shadow-md shadow-gray-300">
         <div>Anywhere</div>
         <div className="border border-l border-gray-300"></div>
@@ -64,7 +64,7 @@ function Header() {
           />
         </svg>
         <Link
-          to={"/login"}
+          to={user ? "/account" : "/login"}
           className="bg-gray-500 text-white rounded-full border border-gray-500 overflow-hidden"
         >
           <svg
