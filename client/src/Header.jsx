@@ -14,7 +14,7 @@ function Header() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-8 h-8"
+          className="w-6 h-6"
         >
           <path
             strokeLinecap="round"
@@ -23,7 +23,7 @@ function Header() {
           />
         </svg>
 
-        <span className="font-bold text-xl">DippiBook</span>
+        <h4 className="font-bold text-xl">dippibook</h4>
       </Link>
       <div className="flex gap-2 border border-gray 300 rounded-full py-2 px-4 shadow-md shadow-gray-300">
         <div>Anywhere</div>
