@@ -4,6 +4,7 @@ const { default: mongoose } = require("mongoose");
 const User = require("./models/User");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
+const imageDownloader = require("image-downloader");
 const jwt = require("jsonwebtoken");
 /* `require("dotenv").config();` is a method used to load environment variables from a `.env` file into
 the Node.js process. The `.env` file contains key-value pairs of environment variables that are
@@ -24,6 +25,7 @@ requests. It allows the server to access and manipulate cookies sent by the clie
 the cookie data is available in the `req.cookies` object, which can be accessed in subsequent
 middleware or route handlers. */
 app.use(cookieParser());
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 // Connect database
 const connectionString = process.env.CONNECTIONSTRING;
@@ -108,6 +110,16 @@ app.get("/profile", (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json(true);
+});
+
+app.post("/upload-by-link", async (req, res) => {
+  const { link } = req.body;
+  const newName = "photo" + Date.now() + ".jpg";
+  await imageDownloader.image({
+    url: link,
+    dest: __dirname + "/uploads/" + newName,
+  });
+  res.json(newName);
 });
 
 app.listen(4000);
