@@ -46,6 +46,32 @@ function PlacesPage() {
     setPhotoLink("");
   };
 
+  const uploadPhoto = async (ev) => {
+    ev.preventDefault();
+    const files = ev.target.files;
+    const data = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      data.append("photos", files[i]);
+    }
+
+    try {
+      axios
+        .post("/upload", data, {
+          headers: { "Content-type": "multipart/form-data" },
+          withCredentials: true,
+        })
+        .then((response) => {
+          const { data: filenames } = response;
+          setAddedPhotos((prev) => {
+            return [...prev, ...filenames];
+          });
+        });
+    } catch (error) {
+      console.error("Error al subir la foto:", error);
+    }
+  };
+
   return (
     <div>
       {action !== "new" && (
@@ -110,18 +136,25 @@ function PlacesPage() {
                 Add&nbsp;photo
               </button>
             </div>
+
             <div className=" grid grid-cols-3 gap-4 mt-2 md:grid-cols-4 lg:grid-col-6">
               {addedPhotos.length > 0 &&
                 addedPhotos.map((link) => (
-                  <div className="">
+                  <div className="h-44 flex">
                     <img
-                      className="rounded-2xl"
+                      className="rounded-2xl w-full object-cover"
                       src={"http://localhost:4000/uploads/" + link}
                       alt=""
                     />
                   </div>
                 ))}
-              <button className="flex gap-1 justify-center border bg-transparent rounded-2xl p-8 text-2xl text-gray-600">
+              <label className="h-44 cursor-pointer items-center flex gap-1 justify-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
+                <input
+                  type="file"
+                  multiple
+                  className="hidden"
+                  onChange={uploadPhoto}
+                />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -136,8 +169,8 @@ function PlacesPage() {
                     d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m0-3-3-3m0 0-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75"
                   />
                 </svg>
-                Upload from your device
-              </button>
+                Upload
+              </label>
             </div>
             {preInput("Description", "Description of the place")}
 

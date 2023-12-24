@@ -19,3 +19,4 @@ Go to [https://tailwindcss.com/docs/guides/vite]
 ~ yarn add jsonwebtoken
 ~ yarn add cookie-parser
 ~ yarn add image-downloader
+~ yarn add multer

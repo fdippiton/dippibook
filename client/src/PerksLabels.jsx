@@ -1,10 +1,24 @@
 import React from "react";
 
 function PerksLabels({ selected, onChange }) {
+  /**
+   * The function `handleCbClick` updates the `selected` array based on the checkbox's `checked` value
+   * and `name` property.
+   */
+  const handleCbClick = (ev) => {
+    /* The code snippet is handling the click event of the checkboxes. */
+    const { checked, name } = ev.target;
+    if (checked) {
+      onChange([...selected, name]);
+    } else {
+      onChange([...selected.filter((selectedPerk) => selectedPerk !== name)]);
+    }
+  };
+
   return (
     <div className="grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 mt-2">
       <label className="border gap-2 p-4 flex rounded-2xl items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="wifi" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -23,7 +37,7 @@ function PerksLabels({ selected, onChange }) {
         <span>Wifi</span>
       </label>
       <label className="border gap-2 p-4 flex rounded-2xl items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="parking" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -42,7 +56,7 @@ function PerksLabels({ selected, onChange }) {
         <span>Free parking spot</span>
       </label>
       <label className="border gap-2 p-4 flex rounded-2xl items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="tv" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -61,7 +75,7 @@ function PerksLabels({ selected, onChange }) {
         <span>Tv</span>
       </label>
       <label className="border gap-2 p-4 flex rounded-2xl items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="radio" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -80,7 +94,7 @@ function PerksLabels({ selected, onChange }) {
         <span>Radio</span>
       </label>
       <label className="border gap-2 p-4 flex rounded-2xl items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="pets" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -99,7 +113,7 @@ function PerksLabels({ selected, onChange }) {
         <span>Pets</span>
       </label>
       <label className="border gap-2 p-4 flex rounded-2xl items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="entrance" onChange={handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

@@ -6,6 +6,8 @@ const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const imageDownloader = require("image-downloader");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const multer = require("multer");
 /* `require("dotenv").config();` is a method used to load environment variables from a `.env` file into
 the Node.js process. The `.env` file contains key-value pairs of environment variables that are
 specific to the application. By calling `require("dotenv").config();`, the application can access
@@ -112,14 +114,35 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json(true);
 });
 
+/* The code `app.post("/upload-by-link", async (req, res) => { ... })` is defining a route handler for
+the HTTP POST request to "/upload-by-link". */
 app.post("/upload-by-link", async (req, res) => {
   const { link } = req.body;
   const newName = "photo" + Date.now() + ".jpg";
+  /* The code `await imageDownloader.image({ url: link, dest: __dirname + "/uploads/" + newName })` is
+using the `imageDownloader` library to download an image from the specified URL and save it to the
+server's `/uploads` directory with a new name. */
   await imageDownloader.image({
     url: link,
     dest: __dirname + "/uploads/" + newName,
   });
   res.json(newName);
+});
+
+/* The line `const photosMiddleware = multer({ dest: "uploads" });` is creating a middleware function
+using the `multer` library. This middleware function is responsible for handling file uploads. */
+const photosMiddleware = multer({ dest: "uploads/" });
+app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
+  const uploadedFiles = [];
+  for (let i = 0; i < req.files.length; i++) {
+    const { path, originalname } = req.files[i];
+    const parts = originalname.split(".");
+    const ext = parts[parts.length - 1];
+    const newPath = path + "." + ext;
+    fs.renameSync(path, newPath);
+    uploadedFiles.push(newPath.replace("uploads\\", ""));
+  }
+  res.json(uploadedFiles);
 });
 
 app.listen(4000);
