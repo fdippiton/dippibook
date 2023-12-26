@@ -61,9 +61,9 @@ function PhotosUploader({ addedPhotos, onChange }) {
 
   return (
     <>
-      /* The code snippet is rendering a div element with a flex layout and a
+      {/* The code snippet is rendering a div element with a flex layout and a
       gap of 2 units between its child elements. Inside the div, there is an
-      input element and a button element. */
+      input element and a button element. */}
       <div className="flex gap-2">
         <input
           value={photoLink}
@@ -78,8 +78,8 @@ function PhotosUploader({ addedPhotos, onChange }) {
           Add&nbsp;photo
         </button>
       </div>
-      /* The code snippet is rendering a section that displays the added photos
-      and allows the user to upload more photos. */
+      {/* The code snippet is rendering a section that displays the added photos
+      and allows the user to upload more photos. */}
       <div className=" grid grid-cols-3 gap-4 mt-2 md:grid-cols-4 lg:grid-col-6">
         {addedPhotos.length > 0 &&
           addedPhotos.map((link) => (

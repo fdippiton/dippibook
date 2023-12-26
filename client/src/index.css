@@ -16,6 +16,10 @@ textarea {
   font-size: 14px;
 }
 
+textarea {
+  height: 140px;
+}
+
 button {
   @apply bg-gray-300;
 }
