@@ -195,7 +195,7 @@ app.get("/places/:id", async (req, res) => {
 /* The code `app.put("/places/:id", async (req, res) => { ... })` is defining a route handler for the
 HTTP PUT request to "/places/:id". This route is used to update a specific place document in the
 database. */
-app.put("/places/:id", async (req, res) => {
+app.put("/places", async (req, res) => {
   const { token } = req.cookies;
   const {
     id,
@@ -219,7 +219,7 @@ app.put("/places/:id", async (req, res) => {
     const placeDoc = await Place.findById(id);
 
     // Check if the current user is the owner of the place
-    if (userData.id === placeDoc.owner) {
+    if (userData.id === placeDoc.owner.toString()) {
       // Update the place document with new data
       placeDoc.set({
         owner: userData.id,

@@ -46,7 +46,6 @@ function PlacesPage() {
           Add new place
         </Link>
 
-        <h5 className="mt-5"> List of all added places</h5>
         <div className="mt-5">
           {places.length > 0 &&
             places.map((place) => (
@@ -55,11 +54,11 @@ function PlacesPage() {
                 className="flex cursor-pointer bg-gray-100 gap-4 p-4 rounded-2xl mb-3"
                 key={place._id}
               >
-                <div className="w-96 h-48 bg-gray-300  ">
+                <div className="w-96 h-48 bg-gray-300  rounded-2xl">
                   {place.photos.length > 0 && (
                     <img
-                      className="w-full h-full object-cover"
-                      src={place.photos[0]}
+                      className="w-full h-full object-cover rounded-2xl"
+                      src={"http://localhost:4000/uploads/" + place.photos[0]}
                       alt=""
                     />
                   )}

@@ -74,7 +74,7 @@ function PlacesFormPage() {
 
     if (id) {
       // Update
-
+      console.log(id);
       await axios.put(
         "/places",
         { id, ...placeData },
@@ -86,8 +86,7 @@ function PlacesFormPage() {
       setRedirect(true);
     } else {
       // Create
-
-      await axios.post("/places", ...placeData, {
+      await axios.post("/places", placeData, {
         withCredentials: true,
       });
 
