@@ -158,6 +158,7 @@ app.post("/places", (req, res) => {
     checkIn,
     checkOut,
     maxGuests,
+    price,
   } = req.body;
   jwt.verify(token, secretKey, {}, async (err, userData) => {
     if (err) throw err;
@@ -173,12 +174,13 @@ app.post("/places", (req, res) => {
       checkIn,
       checkOut,
       maxGuests,
+      price,
     });
     res.json(placeDoc);
   });
 });
 
-app.get("/places", (req, res) => {
+app.get("/user-places", (req, res) => {
   const { token } = req.cookies;
 
   jwt.verify(token, secretKey, {}, async (err, userData) => {
@@ -208,6 +210,7 @@ app.put("/places", async (req, res) => {
     checkIn,
     checkOut,
     maxGuests,
+    price,
   } = req.body;
 
   jwt.verify(token, secretKey, {}, async (err, userData) => {
@@ -232,6 +235,7 @@ app.put("/places", async (req, res) => {
         checkIn,
         checkOut,
         maxGuests,
+        price,
       });
 
       // Save the updated place document
@@ -240,6 +244,12 @@ app.put("/places", async (req, res) => {
       res.json("ok");
     }
   });
+});
+
+/* The code `app.get("/places", async (req, res) => { res.json(await Place.find()); });` is defining a
+route handler for the HTTP GET request to "/places". */
+app.get("/places", async (req, res) => {
+  res.json(await Place.find());
 });
 
 app.listen(4000);

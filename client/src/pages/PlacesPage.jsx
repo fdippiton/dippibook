@@ -9,7 +9,9 @@ function PlacesPage() {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get("/places", { withCredentials: true });
+        const response = await axios.get("/user-places", {
+          withCredentials: true,
+        });
         const { data } = response;
         setPlaces(data);
       } catch (error) {
