@@ -9,7 +9,7 @@ function Index() {
     const fetchPlaces = async () => {
       const response = await axios.get("/places");
       const { data } = response;
-      setPlaces([...data, ...data, ...data, ...data]);
+      setPlaces([...data]);
     };
     fetchPlaces();
   }, []);

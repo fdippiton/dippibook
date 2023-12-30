@@ -23,7 +23,12 @@ function Header() {
           />
         </svg>
 
-        <h4 className="font-bold text-xl">dippibook</h4>
+        <h4
+          className="font-bold text-2xl"
+          style={{ fontFamily: "Rubik Mono One" }}
+        >
+          dippibook
+        </h4>
       </Link>
       <div className="flex gap-2 border border-gray 300 rounded-full py-2 px-4 shadow-md shadow-gray-300">
         <div>Anywhere</div>

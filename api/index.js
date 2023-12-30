@@ -1,14 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
-const User = require("./models/User");
-const Place = require("./models/Place");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const imageDownloader = require("image-downloader");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const multer = require("multer");
+
+/* --------------------------------- Models --------------------------------- */
+const User = require("./models/User");
+const Place = require("./models/Place");
+
 /* `require("dotenv").config();` is a method used to load environment variables from a `.env` file into
 the Node.js process. The `.env` file contains key-value pairs of environment variables that are
 specific to the application. By calling `require("dotenv").config();`, the application can access
@@ -30,17 +33,14 @@ middleware or route handlers. */
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
-// Connect database
+/* ---------------------------- Connect database ---------------------------- */
 const connectionString = process.env.CONNECTIONSTRING;
 const secretKey = process.env.SECRET_KEY;
 mongoose.connect(connectionString);
 // const connectionString = config.database.CONNECTIONSTRING;
 // mongoose.connect(connectionString);
 
-app.get("/test", (req, res) => {
-  res.json("test ok");
-});
-
+/* ------------------------------ Register User ----------------------------- */
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -58,6 +58,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
+/* ------------------------------- Login User ------------------------------- */
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -98,6 +99,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
+/* ------------------------------ User Profile ------------------------------ */
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   if (token) {
@@ -111,6 +113,7 @@ app.get("/profile", (req, res) => {
   }
 });
 
+/* --------------------------------- Logout --------------------------------- */
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json(true);
 });
@@ -130,6 +133,7 @@ server's `/uploads` directory with a new name. */
   res.json(newName);
 });
 
+/* ---------------------- Upload Accommodation's photos --------------------- */
 /* The line `const photosMiddleware = multer({ dest: "uploads" });` is creating a middleware function
 using the `multer` library. This middleware function is responsible for handling file uploads. */
 const photosMiddleware = multer({ dest: "uploads/" });
@@ -146,6 +150,7 @@ app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
   res.json(uploadedFiles);
 });
 
+/* --------------------------- Post Accommodations -------------------------- */
 app.post("/places", (req, res) => {
   const { token } = req.cookies;
   const {
@@ -180,6 +185,7 @@ app.post("/places", (req, res) => {
   });
 });
 
+/* -------------------- Get all the user's accommodations ------------------- */
 app.get("/user-places", (req, res) => {
   const { token } = req.cookies;
 
@@ -189,11 +195,13 @@ app.get("/user-places", (req, res) => {
   });
 });
 
+/* --------------------- Get an specific accommodations --------------------- */
 app.get("/places/:id", async (req, res) => {
   const { id } = req.params;
   res.json(await Place.findById(id));
 });
 
+/* -------------------------- Update Accommodations ------------------------- */
 /* The code `app.put("/places/:id", async (req, res) => { ... })` is defining a route handler for the
 HTTP PUT request to "/places/:id". This route is used to update a specific place document in the
 database. */
@@ -246,6 +254,7 @@ app.put("/places", async (req, res) => {
   });
 });
 
+/* ------------------------- Get All Accommodations ------------------------- */
 /* The code `app.get("/places", async (req, res) => { res.json(await Place.find()); });` is defining a
 route handler for the HTTP GET request to "/places". */
 app.get("/places", async (req, res) => {
