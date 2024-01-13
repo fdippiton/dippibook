@@ -8,6 +8,9 @@ function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  /* -------------------------------------------------------------------------- */
+  /*                           Register User Function                           */
+  /* -------------------------------------------------------------------------- */
   const registerUser = async (ev) => {
     ev.preventDefault();
 

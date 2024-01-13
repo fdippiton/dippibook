@@ -6,6 +6,9 @@ import axios from "axios";
 function PlacesPage() {
   const [places, setPlaces] = useState([]);
 
+  /* -------------------------------------------------------------------------- */
+  /*                              Get User's Places                             */
+  /* -------------------------------------------------------------------------- */
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
@@ -27,6 +30,7 @@ function PlacesPage() {
       <AccountNav />
 
       <div className="text-center">
+        {/* ----------------------------- Add new accommodation link ----------------------------- */}
         <Link
           className="inline-flex gap-1 bg-primary text-white py-2 px-6 rounded-full"
           to={"/account/places/new"}
@@ -48,6 +52,7 @@ function PlacesPage() {
           Add new place
         </Link>
 
+        {/* ----------------------------- Accommodations List ----------------------------- */}
         <div className="mt-5">
           {places.length > 0 &&
             places.map((place) => (
@@ -65,6 +70,7 @@ function PlacesPage() {
                     />
                   )}
                 </div>
+
                 <div className=" ">
                   <h2 className="text-xl text-start">{place.title}</h2>
                   <p className="text-sm ">{place.description}</p>

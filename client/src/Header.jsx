@@ -7,6 +7,7 @@ function Header() {
 
   return (
     <header className=" flex justify-between">
+      {/* ---------------------------------- Logo ---------------------------------- */}
       <Link className="flex items-center gap-1" to={"/"}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -30,6 +31,8 @@ function Header() {
           dippibook
         </h4>
       </Link>
+
+      {/* ------------------------------- Search bar ------------------------------- */}
       <div className="flex gap-2 border border-gray 300 rounded-full py-2 px-4 shadow-md shadow-gray-300">
         <div>Anywhere</div>
         <div className="border border-l border-gray-300"></div>
@@ -53,6 +56,8 @@ function Header() {
           </svg>
         </button>
       </div>
+
+      {/* ------------------------------ Profile link ------------------------------ */}
       <div className="flex items-center gap-2 border border-gray 300 rounded-full py-2 px-4 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -5,6 +5,7 @@ import { Navigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import PlacesPage from "./PlacesPage";
 import AccountNav from "../AccountNav";
+
 function AccountPage() {
   const { ready, user, setUser } = useContext(UserContext);
   const [redirect, setRedirect] = useState(false);
@@ -13,8 +14,8 @@ function AccountPage() {
   if (subpage === undefined) {
     subpage = "profile";
   }
-  console.log(subpage);
 
+  /* --------------------------------- Logout --------------------------------- */
   const logout = () => {
     axios.post("/logout", { withCredentials: true });
     setUser(null);

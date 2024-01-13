@@ -21,6 +21,9 @@ function PlacesFormPage() {
   const [price, setPrice] = useState(100);
   const [redirect, setRedirect] = useState(false);
 
+  /* -------------------------------------------------------------------------- */
+  /*                               Get Place Info                               */
+  /* -------------------------------------------------------------------------- */
   useEffect(() => {
     const fetchPlace = async () => {
       if (!id) {
@@ -60,6 +63,9 @@ function PlacesFormPage() {
     );
   };
 
+  /* -------------------------------------------------------------------------- */
+  /*                            Save or Update place                            */
+  /* -------------------------------------------------------------------------- */
   const savePlace = async (ev) => {
     ev.preventDefault();
     const placeData = {

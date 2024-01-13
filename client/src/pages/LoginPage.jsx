@@ -10,6 +10,9 @@ function LoginPage() {
   const [redirect, setRedirect] = useState(false);
   const { setUser } = useContext(UserContext);
 
+  /* -------------------------------------------------------------------------- */
+  /*                                 HandleLogin                                */
+  /* -------------------------------------------------------------------------- */
   /**
    * The function `handleLoginUser` is an asynchronous function that sends a POST request to the "/login"
    * endpoint with the user's email and password, and sets the redirect state to true if the login is
@@ -43,6 +46,7 @@ function LoginPage() {
     <div className="mt-4 grow flex items-center justify-around">
       <div className="mb-64 border p-3 rounded-md">
         <h1 className="text-4xl text-center mb-4 ">Login</h1>
+
         <form className="max-w-md mx-auto " onSubmit={handleLoginUser}>
           <input
             type="email"
@@ -60,7 +64,9 @@ function LoginPage() {
             value={password}
             onChange={(ev) => setPassword(ev.target.value)}
           />
+
           <button className="primary">Login</button>
+
           <div className="text-center py-2 text-gray-500">
             Dont't have an account yet?{" "}
             <Link className="underline text-black" to={"/register"}>

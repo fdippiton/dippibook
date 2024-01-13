@@ -5,6 +5,9 @@ import axios from "axios";
 function Index() {
   const [places, setPlaces] = useState([]);
 
+  /* -------------------------------------------------------------------------- */
+  /*                               Get all places                               */
+  /* -------------------------------------------------------------------------- */
   useEffect(() => {
     const fetchPlaces = async () => {
       const response = await axios.get("/places");
@@ -28,8 +31,9 @@ function Index() {
                 />
               )}
             </div>
-            <h2 className="text-sm mt-2 truncate leading-4">{place.title}</h2>
             <h3 className="font-bold ">{place.address}</h3>
+            <h2 className="text-sm text-gray-500">{place.title}</h2>
+            <div>$ {place.price} per night</div>
           </div>
         ))}
       {/* <Link
