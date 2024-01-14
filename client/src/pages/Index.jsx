@@ -21,7 +21,7 @@ function Index() {
     <div className="mt-8 gap-x-8 gap-y-10 grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
       {places.length > 0 &&
         places.map((place) => (
-          <div>
+          <Link to={"/place/" + place._id}>
             <div className="bg-gray-500  rounded-2xl flex">
               {place.photos?.[0] && (
                 <img
@@ -33,8 +33,11 @@ function Index() {
             </div>
             <h3 className="font-bold ">{place.address}</h3>
             <h2 className="text-sm text-gray-500">{place.title}</h2>
-            <div>$ {place.price} per night</div>
-          </div>
+            <div className="mt-1">
+              {" "}
+              <span className="font-bold">$ {place.price} per night</span>
+            </div>
+          </Link>
         ))}
       {/* <Link
             to={"/account/places/" + place._id}

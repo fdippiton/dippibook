@@ -10,6 +10,7 @@ import { UserContextProvider } from "./UserContext";
 import AccountPage from "./pages/AccountPage";
 import PlacesPage from "./pages/PlacesPage";
 import PlacesFormPage from "./pages/PlacesFormPage";
+import PlacePage from "./pages/PlacePage";
 
 /* `axios.defaults.baseURL = "http://localhost:4000";` sets the default base URL for all Axios requests
 in the application. In this case, it sets the base URL to "http://localhost:4000", which means that
@@ -29,6 +30,7 @@ function App() {
           <Route path="/account/places" element={<PlacesPage />} />
           <Route path="/account/places/new" element={<PlacesFormPage />} />
           <Route path="/account/places/:id" element={<PlacesFormPage />} />
+          <Route path="/place/:id" element={<PlacePage />} />
         </Route>
       </Routes>
     </UserContextProvider>
